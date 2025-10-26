@@ -1,0 +1,2 @@
+/home/noct/.config/nvim
+/home/noct/.local/share
