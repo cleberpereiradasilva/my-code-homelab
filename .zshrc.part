@@ -1,0 +1,45 @@
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# ==============================
+#  Zsh plugins
+# ==============================
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# ==============================
+#  Aliases
+# ==============================
+alias ls="colorls -la"
+alias lg="lazygit"
+alias activate="source .env/bin/activate"
+
+# ==============================
+#  Starship prompt
+# ==============================
+eval "$(starship init zsh)"
+
+# ==============================
+#  Auto tmux on login
+# ==============================
+if [ -z "$TMUX" ]; then
+  tmux attach || tmux new
+fi
+
+# ==============================
+#  NVM configuration
+# ==============================
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# ==============================
+#  Load all SSH keys silently
+# ==============================
+if [ -d "$HOME/.ssh" ]; then
+  eval "$(ssh-agent -s)" >/dev/null 2>&1
+  for key in $HOME/.ssh/id_*; do
+    [ -f "$key" ] && ssh-add -q "$key" >/dev/null 2>&1
+  done
+fi
+
+
