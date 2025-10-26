@@ -2,6 +2,10 @@
 
 A fully isolated, fast, and customized development environment with **Zsh**, **Neovim (LazyVim)**, and **Node.js/NVM** — perfect for developers who want productivity and style inside containers.
 
+<img width="1381" height="995" alt="image" src="https://github.com/user-attachments/assets/d1308358-bf9a-4b2b-96fb-cca7f0b83805" />
+
+<img width="2289" height="2077" alt="image" src="https://github.com/user-attachments/assets/93601094-30fd-4b67-8d04-0a08132036da" />
+
 ---
 
 ## 🚀 How to Build
