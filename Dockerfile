@@ -59,9 +59,18 @@ USER noct
 ENV NVM_DIR=/home/noct/.nvm
 RUN mkdir -p $NVM_DIR && \
     curl -L https://github.com/nvm-sh/nvm/archive/refs/tags/v0.40.2.tar.gz | tar -xz -C $NVM_DIR --strip-components=1
-RUN bash -c "source $NVM_DIR/nvm.sh && nvm install 20 && nvm alias default 20"
+RUN bash -c "source $NVM_DIR/nvm.sh && nvm install 22 && nvm install 20 && nvm alias default 20"
 RUN echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc && \
     echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.zshrc
+
+
+# -------------------------------
+# Install Yarn (via Corepack)
+# -------------------------------
+RUN bash -ic "source $NVM_DIR/nvm.sh && corepack enable && corepack prepare yarn@stable --activate" && \
+    echo '# Yarn configuration' >> ~/.zshrc && \
+    echo 'export PATH="$(yarn global bin):$PATH"' >> ~/.zshrc
+
 
 # Fix npm global permissions
 USER root
@@ -131,7 +140,8 @@ RUN mkdir /var/run/sshd && \
 # Expose SSH port
 # -------------------------------
 EXPOSE 22
-
+EXPOSE 3000
+EXPOSE 3001
 # -------------------------------
 # Default command to keep container alive
 # -------------------------------
